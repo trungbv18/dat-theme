@@ -33,52 +33,54 @@ const ProductCard = (props) => {
   };
 
   return (
-    <div className={styles.root}>
-      <div
-        className={styles.imageContainer}
-        onClick={() => handleRouteToProduct()}
-        role={'presentation'}
-      >
-        <img style={{ height: `${height}px` }} src={image} alt={imageAlt}></img>
+      <div className={styles.root}>
         <div
-          className={styles.bagContainer}
-          role={'presentation'}
-          onClick={(e) => handleQuickView(e)}
+            className={styles.imageContainer}
+            onClick={() => handleRouteToProduct()}
+            role={'presentation'}
         >
-          <Icon symbol={'bagPlus'} />
-        </div>
-        <div
-          className={styles.heartContainer}
-          role={'presentation'}
-          onClick={(e) => handleFavorite(e)}
-        >
-          <Icon symbol={'heart'} />
+          <img style={{ height: `${height}px` }} src={image} alt={imageAlt}></img>
           <div
-            className={`${styles.heartFillContainer} ${
-              isWishlist === true ? styles.show : styles.hide
-            }`}
+              className={styles.bagContainer}
+              role={'presentation'}
+              onClick={(e) => handleQuickView(e)}
           >
-            <Icon symbol={'heartFill'}></Icon>
+            <Icon symbol={'bagPlus'} />
+          </div>
+          <div
+              className={styles.heartContainer}
+              role={'presentation'}
+              onClick={(e) => handleFavorite(e)}
+          >
+            <Icon symbol={'heart'} />
+            <div
+                className={`${styles.heartFillContainer} ${
+                    isWishlist === true ? styles.show : styles.hide
+                }`}
+            >
+              <Icon symbol={'heartFill'}></Icon>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.detailsContainer}>
-        <span className={styles.productName}>{name}</span>
-        <div className={styles.prices}>
+        <div className={styles.detailsContainer}>
+          <span className={styles.productName}>{name}</span>
+          <div className={styles.prices}>
           <span
-            className={`${originalPrice !== undefined ? styles.salePrice : ''}`}
+              className={`${originalPrice !== undefined ? styles.salePrice : ''}`}
           >
-            <CurrencyFormatter amount={price}></CurrencyFormatter>
+            {/*<CurrencyFormatter amount={price}></CurrencyFormatter>*/}
+            <span className={styles.prices}>{price}</span>
+
           </span>
-          {originalPrice && (
-            <span className={styles.originalPrice}>
+            {originalPrice && (
+                <span className={styles.originalPrice}>
               <CurrencyFormatter amount={originalPrice}></CurrencyFormatter>
             </span>
-          )}
+            )}
+          </div>
+          <span className={styles.meta}>{meta}</span>
         </div>
-        <span className={styles.meta}>{meta}</span>
       </div>
-    </div>
   );
 };
 
